@@ -44,8 +44,8 @@ function saveImage() : string | null
 
 function deleteFile(string $fileName) : bool
     {
-        if (file_exists(__DIR__ . "/api/files/" . $fileName)) {
-            unlink(__DIR__ . "/api/files/" . $fileName);
+        if (file_exists(__DIR__ . "api/files/" . $fileName)) {
+            unlink(__DIR__ . "api/files/" . $fileName);
             return true;
         }
 

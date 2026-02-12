@@ -6,11 +6,11 @@
     <title>Adhérer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="/styles/grade_subscription_style.css">
+    <link rel="stylesheet" href="styles/grade_subscription_style.css">
 
-    <link rel="stylesheet" href="/styles/general_style.css">
-    <link rel="stylesheet" href="/styles/header_style.css">
-    <link rel="stylesheet" href="/styles/footer_style.css">
+    <link rel="stylesheet" href="styles/general_style.css">
+    <link rel="stylesheet" href="styles/header_style.css">
+    <link rel="stylesheet" href="styles/footer_style.css">
 </head>
 
 <body class="body_margin">
@@ -34,7 +34,7 @@ $db = new DB();
 
 $isLoggedIn = isset($_SESSION["userid"]);
 if (!$isLoggedIn) {
-    header("Location: /login.php");
+    header("Location: login.php");
     exit;
 }
 
@@ -43,7 +43,7 @@ $userid = $_SESSION["userid"];
 
 // Vérification que l'ID du grade est fourni dans l'URL
 if (!isset($_GET['id']) || empty($_GET['id'])) {
-    header("Location: /grade.php");
+    header("Location: grade.php");
     exit;
 }
 $id_grade = intval($_GET['id']);
@@ -60,7 +60,7 @@ $grade = $db->select(
 if (empty($grade)) {
     $_SESSION['message'] = "Le grade sélectionné n'existe pas.";
     $_SESSION['message_type'] = "error";
-    header("Location: /grade.php");
+    header("Location: grade.php");
     exit;
 }
 
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $_SESSION['message'] = "Adhésion au grade réussie !";
         $_SESSION['message_type'] = "success";
-        header("Location: /grade.php");
+        header("Location: grade.php");
         exit;
     } else {
     }
@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div>
     <button id="cart-button">
         <a href="/grade.php">
-            <img src="/assets/fleche_retour.png" alt="Flèche de retour">
+            <img src="assets/fleche_retour.png" alt="Flèche de retour">
             Retourner aux grades
         </a>
     </button>

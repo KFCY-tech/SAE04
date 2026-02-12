@@ -15,7 +15,7 @@
                 [$eventid]
             );
             if(empty($event) || is_null($event)){
-                header("Location: /index.php");
+                header("Location: index.php");
                 exit;
             }
             $event = $event[0];
@@ -25,7 +25,7 @@
             }
 
         }else{
-            header("Location: /index.php");
+            header("Location: index.php");
             exit;
         }
     ?>
@@ -39,11 +39,11 @@
 
     <title><?php echo $event['nom_evenement']?></title>
 
-    <link rel="stylesheet" href="/styles/header_style.css">
-    <link rel="stylesheet" href="/styles/footer_style.css">
+    <link rel="stylesheet" href="styles/header_style.css">
+    <link rel="stylesheet" href="styles/footer_style.css">
 
-    <link rel="stylesheet" href="/styles/general_style.css">
-    <link rel="stylesheet" href="/styles/event_details_style.css">
+    <link rel="stylesheet" href="styles/general_style.css">
+    <link rel="stylesheet" href="styles/event_details_style.css">
 
 
 
@@ -124,7 +124,7 @@
 
             <form id="add-media" action="/add_media.php" method="post" enctype="multipart/form-data">
                 <label for="file-picker">
-                    <img src="/assets/add_media.png" alt="Ajouter un média">
+                    <img src="assets/add_media.png" alt="Ajouter un média">
                 </label>
                 <input type="hidden" name="eventid" value="<?php echo $eventid?>">
                 <input type="hidden" name="userid" value="<?php echo $_SESSION['userid']?>">
@@ -135,7 +135,7 @@
 
             <form id="open-gallery" action="/my_gallery.php" method="get">
                 <label for="open-gallery-button">
-                    <img src="/assets/explore_gallery.png" alt="Voir ma galerie entière">
+                    <img src="assets/explore_gallery.png" alt="Voir ma galerie entière">
                 </label>
                 <input type="hidden" name="eventid" value="<?php echo $eventid ?>">
                 <button id="open-gallery-button" type="submit" style="display:none;">Envoyer</button>
