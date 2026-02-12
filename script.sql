@@ -61,6 +61,20 @@ CREATE TABLE ARTICLE(
                         PRIMARY KEY(id_article)
 );
 
+CREATE TABLE CATEGORIE(
+                        id_categorie INT AUTO_INCREMENT,
+                        nom_categorie VARCHAR(50) NOT NULL,
+                        PRIMARY KEY(id_categorie)
+);
+
+CREATE TABLE article_categories (
+                        id_article INT,
+                        id_categorie INT,
+                        PRIMARY KEY (id_article, id_categorie),
+                        FOREIGN KEY (id_article) REFERENCES article(id_article) ,
+                        FOREIGN KEY (id_categorie) REFERENCES categorie(id_categorie)
+);
+
 CREATE TABLE COMMANDE(
                          id_commande INT AUTO_INCREMENT,
                          statut_commande BIT NOT NULL,
@@ -231,6 +245,30 @@ INSERT INTO ARTICLE (xp_article, nom_article, stock_article, image_article, redu
 (1, 'Barre de Chocolat', 0, 'http://files.bdeinfo.fr/chocolat.jpg', 0, 1.50),
 (1, 'Jus d Orange', 55, 'http://files.bdeinfo.fr/jus_orange.jpg', 0, 1.30),
 (30, 'Volvic', 70, 'http://files.bdeinfo.fr/volvic.jpg', 0, 0.80);
+
+-- Ajout des catégories des articles
+INSERT INTO categorie (nom_categorie) VALUES 
+('Sucré'),
+('Salé'),
+('Boisson'),
+('Merch');
+
+-- Ajout des articles à leur catégorie
+INSERT INTO article_categories (id_article, id_categorie) 
+VALUES 
+(1, 1), 
+(1, 3),
+(2, 1),
+(2, 3),
+(3, 1),
+(3, 3),
+(4, 3),
+(5, 1),
+(6, 1),
+(7, 2),
+(8, 1),
+(9, 3),
+(10, 3);
 
 -- Ajout des commandes
 INSERT INTO COMMANDE (statut_commande, prix_commande, paiement_commande, date_commande, qte_commande, id_membre, id_article) VALUES

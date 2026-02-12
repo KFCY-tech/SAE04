@@ -63,7 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 //Construction de la requête SQL
-$query = "SELECT * FROM ARTICLE";
+$query = "SELECT * FROM ARTICLE 
+            JOIN article_categories on article.id_article=article_categories.id_article
+            JOIN categorie on article_categories.id_categorie=categorie.id_categorie";
 $whereClauses = ["deleted = false"];
 $params = [];
 // Ajout de la recherche par nom
@@ -74,7 +76,8 @@ if (!empty($searchTerm)) {
 // Ajout des filtres par catégorie
 if (!empty($filters)) {
     $placeholders = implode(", ", array_fill(0, count($filters), "?"));
-    $whereClauses[] = "categorie_article IN ($placeholders)";
+    var_dump($placeholders);
+    $whereClauses[] = "categorie.nom_categorie IN ($placeholders)";
     $params = array_merge($params, $filters);
 }
 // Ajout des clauses WHERE
